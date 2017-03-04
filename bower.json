@@ -1,0 +1,17 @@
+{
+  "name": "soothe",
+  "authors": [
+    "Angus McLean <amclean@sti.systems>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
