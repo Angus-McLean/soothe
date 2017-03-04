@@ -18,8 +18,9 @@
 			"matches": ["http://*/*", "https://*/*"],
 			"js": [
 				"data/triggers.js",
-				"content/content.js",
 				"content/searchDOM.js"
+				"content/blur.js"
+				"content/content.js",
 			],
 			"run_at": "document_start"
 		}
