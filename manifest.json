@@ -17,7 +17,8 @@
 		{
 			"matches": ["http://*/*", "https://*/*"],
 			"js": [
-				"content/content.js"
+				"content/content.js",
+				"content/blur.js"
 			],
 			"run_at": "document_start"
 		}
