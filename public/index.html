@@ -54,7 +54,7 @@
 			  Homophobic
 			</button>
 		  </div>
-		  
+
 		  <div class="mdl-cell mdl-cell--4-col">
 			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="racism">
 			  Racist
@@ -95,7 +95,7 @@
 					<i class="material-icons">check</i>
 				</button>
 			</div>
-			
+
 			<div class="mdl-cell mdl-cell--4-col">
 				<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" id="done">
 					<i class="material-icons">question_answer</i>
@@ -106,28 +106,5 @@
     </div>
 
   </body>
-
- <script type="text/javascript">
-
- 	function addTrigger() {
- 		alert(this);
- 	}
-
-	// chrome.storage.local.set({'activeFilterTypes': ['racism', 'sexism']});
-
-	chrome.storage.local.get(['activeFilterTypes'], function (arrayOfFilterTypes) {
-
-		(arrayOfFilterTypes.activeFilterTypes).forEach(function(item) {
-			var button = document.getElementById(item);
-			console.log(button);
-
-			button.style.background = "red !important";
-		});
-
-	});
-
-
-
- </script>
-
+	<script src="/public/scripts/scripts.js" charset="utf-8"></script>
 </html>
