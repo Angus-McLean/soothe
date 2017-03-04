@@ -19,7 +19,7 @@
 			"js": [
 				"data/triggers.js",
 				"content/content.js",
-				"content/searchTree.js"
+				"content/searchDOM.js"
 			],
 			"run_at": "document_start"
 		}
