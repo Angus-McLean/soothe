@@ -4,20 +4,20 @@
 	"version": "0.0.0.1",
 	"manifest_version": 2,
 	"icons": {
-    "16": "public/img/.png",
-    "48": "public/img/.png",
-    "128": "public/img/.png"
+    "16": "public/img/soothe-icon-16.png",
+    "48": "public/img/soothe-icon-48.png",
+    "128": "public/img/soothe-icon-128.png"
 	},
 	"background": {
 		"scripts": [
-
+			"background/background.js"
 		]
 	},
 	"content_scripts": [
 		{
 			"matches": ["http://*/*", "https://*/*"],
 			"js": [
-
+				"content/content.js"
 			],
 			"run_at": "document_start"
 		}
