@@ -17,7 +17,9 @@
 		{
 			"matches": ["http://*/*", "https://*/*"],
 			"js": [
-				"content/content.js"
+				"data/triggers.js",
+				"content/content.js",
+				"content/searchTree.js"
 			],
 			"run_at": "document_start"
 		}
