@@ -50,37 +50,37 @@
 		<div class="mdl-grid">
 
 		  <div class="mdl-cell mdl-cell--4-col">
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="homophobic">
 			  Homophobic
 			</button>
 		  </div>
 		  
 		  <div class="mdl-cell mdl-cell--4-col">
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="racism">
 			  Racist
 			</button>
 		  </div>
 
 		  <div class="mdl-cell mdl-cell--4-col">
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="sexism" onclick="addTrigger();">
 			  Sexist
 			</button>
 		  </div>
 
 		  <div class="mdl-cell mdl-cell--4-col">
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="transphobism" onclick="addTrigger();">
 			  Transphobic
 			</button>
 		  </div>
 
   		  <div class="mdl-cell mdl-cell--4-col">
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="violence" onclick="addTrigger();">
 			  Violent
 			</button>
 		  </div>
 
   		  <div class="mdl-cell mdl-cell--4-col">
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="sexual-violence" onclick="addTrigger();">
 			  Sexually Violent
 			</button>
 		  </div>
@@ -103,9 +103,31 @@
 			</div>
 
 		</div>
-
-
     </div>
 
   </body>
+
+ <script type="text/javascript">
+
+ 	function addTrigger() {
+ 		alert(this);
+ 	}
+
+	// chrome.storage.local.set({'activeFilterTypes': ['racism', 'sexism']});
+
+	chrome.storage.local.get(['activeFilterTypes'], function (arrayOfFilterTypes) {
+
+		(arrayOfFilterTypes.activeFilterTypes).forEach(function(item) {
+			var button = document.getElementById(item);
+			console.log(button);
+
+			button.style.background = "red !important";
+		});
+
+	});
+
+
+
+ </script>
+
 </html>

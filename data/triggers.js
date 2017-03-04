@@ -5,7 +5,7 @@ var TRIGGERS = {
 		"so gay",
 		"dyke",
 	],
-
+ 
 	"racism" : [
 		"chink",
 		"cracker",
