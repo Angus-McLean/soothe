@@ -4,9 +4,9 @@ var triggers_regex = {};
 
 function generateTriggerRegexes(triggersObject, cb) {
 	triggers_regex = {};
-	chrome.storage.local.get(['activeFilterTypes'], function (arrayOfFilterTypes) {
-		arrayOfFilterTypes.activeFilterTypes.forEach(function (triggerType) {
-			var regexStr = '(' + triggersObject[triggerType].join('|') + ')';
+	chrome.storage.local.get(['activeFilterTypes', 'TRIGGERS'], function (data) {
+		data.activeFilterTypes.forEach(function (triggerType) {
+			var regexStr = '(' + data.TRIGGERS[triggerType].join('|') + ')';
 			triggers_regex[triggerType] = new RegExp(regexStr);
 		});
 		if (cb) {
