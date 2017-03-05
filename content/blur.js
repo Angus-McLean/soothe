@@ -21,17 +21,18 @@ function addBlur(elem) {
 
 		clearDiv.style.width = (targetDiv.offsetWidth - padding) + "px";
 		clearDiv.style.height = (targetDiv.offsetHeight - padding) + "px";
-		clearDiv.style.background = "red";
+		clearDiv.style.background = "white";
 		clearDiv.style.position = "absolute";
 		clearDiv.style.zIndex = 10;
-		clearDiv.style.opacity = "0.5";
+		clearDiv.style.opacity = "0.95";
+		clearDiv.style.filter = 'blur(0.5px)';
+
 
 		clearDiv.addEventListener("click", removeBlur, false);
 		clearDiv.soothe = {parent : elem};
 
 		// create span for bluring
 		var newSpan = document.createElement('span');
-		newSpan.style.filter = 'blur(2px)';
 
 		// Append "Lorem Ipsum" text to new span:
 		newSpan.appendChild( document.createTextNode(targetDiv.innerText) );
