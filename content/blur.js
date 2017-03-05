@@ -42,7 +42,6 @@ function addBlur(elem) {
 
 		targetDiv.insertBefore(clearDiv, targetDiv.firstChild);
 		elem.soothe.div = clearDiv;
-	}
 }
 
 function removeBlur(){

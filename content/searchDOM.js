@@ -2,10 +2,10 @@
 function generateTriggerRegexes(triggersObject) {
   var triggers_regex = {};
   for(var i in triggersObject) {
-    var regexStr = '\\b(' + triggersObject[i].join('|') + ')\\b';
+    var regexStr = '(' + triggersObject[i].join('|') + ')';
     triggers_regex[i] = new RegExp(regexStr);
   }
-  return triggers_regex
+  return triggers_regex;
 }
 
 // {violence : _regex_, racist : _regex_}
