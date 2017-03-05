@@ -47,6 +47,10 @@ function addBlur(elem) {
 
 
 function removeBlur(){
+	// Find index of offensive div
+	var pos = SOOTHE_ELEMS.indexOf(this.parentNode);
+	SOOTHE_ELEMS.splice(pos, 1);
+
 	this.parentNode.removeChild(this);
 	this.soothe = null;
 }
