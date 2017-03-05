@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "firebase": "^3.7.0"
+    "firebase": "^3.7.0",
+    "sentimood": "^1.1.0"
   }
 }
