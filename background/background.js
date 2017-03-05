@@ -18,6 +18,15 @@ var offensiveTypes = [{
 	type : 'sexual-violence'
 }];
 
+var empty_trigupdate = {TRIGGERS : {
+	'homophobic' : [],
+	'sexism' : [],
+	'violence' : [],
+	'racism' : [],
+	'transphobism' : [],
+	'sexual-violence' : []
+}};
+
 var config = {
 	apiKey: "AIzaSyCzfBmcJuPk6eEpQVBez41AwMNcQhQICmc",
 	authDomain: "soothe-c374a.firebaseapp.com",
@@ -32,22 +41,28 @@ var triggersRef = firebase.database().ref().child('triggers');
 triggersRef.once('value').then(function (snap) {
 	var trigsArrs = fromObjToArr(snap.val());
 
-	chrome.storage.local.set({TRIGGERS : trigsArrs});
+	chrome.storage.local.set(empty_trigupdate, function () {
+		setTimeout(function(){chrome.storage.local.set({TRIGGERS : trigsArrs});}, 1);
+	});
 });
 
 offensiveTypes.forEach(function (typeObj) {
-	triggersRef.child(typeObj.type).on('child_added', updateLocalStorage.bind(null, typeObj.type))
-	// triggersRef.on('child_added', function (data) {
-	// 	console.log('child_added',typeObj.type, data);
-	// 	updateLocalStorage(typeObj.type, data.key);
-	// });
+	triggersRef.child(typeObj.type).on('child_added', updateLocalStorage.bind(null, typeObj.type, 'child_added'));
+	triggersRef.child(typeObj.type).on('child_removed', updateLocalStorage.bind(null, typeObj.type, 'child_removed'));
+
 });
 
 
-function updateLocalStorage(type, data) {
+function updateLocalStorage(type, eventType, data) {
 	chrome.storage.local.get('TRIGGERS', function (val) {
-		val.TRIGGERS[type].push(data.key);
-		chrome.storage.local.set({TRIGGERS : val.TRIGGERS});
+		if(eventType == 'child_added') {
+			val.TRIGGERS[type].push(data.key);
+		} else if (eventType === 'child_removed') {
+			val.TRIGGERS[type].splice(val.TRIGGERS[type].indexOf(data.key), 1);
+		}
+		chrome.storage.local.set({TRIGGERS : {}}, function () {
+			chrome.storage.local.set({TRIGGERS : val.TRIGGERS});
+		});
 	});
 }
 

@@ -18,7 +18,7 @@ function addBlur(elem) {
 		var sentimood = new Sentimood();
 		var analysis = sentimood.analyze(targetDiv.textContent);
 
-		if (analysis.score <= 0) {
+		if (true) {
 
 			var clearDiv = document.createElement("div");
 			var padding = 2 * parseFloat((window.getComputedStyle(targetDiv, null).getPropertyValue('padding')));
