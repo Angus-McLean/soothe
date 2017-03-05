@@ -10,6 +10,7 @@
 	},
 	"background": {
 		"scripts": [
+			"bower_components/firebase/firebase.js",
 			"background/background.js"
 		]
 	},
@@ -31,7 +32,7 @@
 	"web_accessible_resources": [
 
 	],
-	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	"content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com 'unsafe-eval'; object-src 'self'",
 	"browser_action": {
 		"default_title": "Soothe",
 		"default_popup": "public/index.html"

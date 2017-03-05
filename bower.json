@@ -14,5 +14,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "firebase": "^3.7.0"
+  }
 }
