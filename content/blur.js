@@ -6,20 +6,10 @@ function addBlur(elem) {
 
 	if (targetDiv.tagName == "B" || targetDiv.tagName == "I" ) {
 
-		// // If it enters here it will stop working
+		targetDiv = targetDiv.parentNode;
 
-		// var targetClone = targetDiv.cloneNode(true);
-
-		// var newSpan = document.createElement("span");
-		// newSpan.appendChild(targetClone);
-		// newSpan.style.display = "inline";
-		// newSpan.style.background = "red";
-
-		// targetDiv.parentNode.insertBefore(newSpan, targetDiv);
-		// targetDiv.parentNode.removeChild(targetDiv);
 	}
 
-	else {
 		var clearDiv = document.createElement("div");
 		var padding = 2 * parseFloat((window.getComputedStyle(targetDiv, null).getPropertyValue('padding')));
 
@@ -34,7 +24,6 @@ function addBlur(elem) {
 		clearDiv.addEventListener("click", removeBlur, false);
 
 		targetDiv.insertBefore(clearDiv, targetDiv.firstChild);
-	}
 }
 
 function removeBlur(){
