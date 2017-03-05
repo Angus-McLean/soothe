@@ -51,7 +51,7 @@ chrome.storage.onChanged.addListener(function (changes, areaName) {
 			elem.soothe = null;
 		});
 		SOOTHE_ELEMS = [];
-		generateTriggerRegexes(TRIGGERS, function (triggers_regex) {
+		generateTriggerRegexes(function (triggers_regex) {
 			iterateOffensiveNodes(document.body, function (elem) {
 				// console.log('Offensive Node found : ', elem);
 				addBlur(elem);

@@ -2,7 +2,7 @@
 
 var triggers_regex = {};
 
-function generateTriggerRegexes(triggersObject, cb) {
+function generateTriggerRegexes(cb) {
 	triggers_regex = {};
 	chrome.storage.local.get(['activeFilterTypes', 'TRIGGERS'], function (data) {
 		data.activeFilterTypes.forEach(function (triggerType) {
@@ -17,7 +17,7 @@ function generateTriggerRegexes(triggersObject, cb) {
 }
 
 // {violence : _regex_, racist : _regex_}
-generateTriggerRegexes(TRIGGERS);
+generateTriggerRegexes();
 
 
 
