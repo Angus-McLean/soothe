@@ -1,20 +1,35 @@
-window.onload = function() {
+function addBlur(elem) {
 
-	var targetDiv = document.getElementById("toc");
+	console.log(elem);
+	elem.style.color = "red";
 
-	console.log([targetDiv.offsetWidth, targetDiv.offsetHeight]);
+	var targetDiv = elem;
 
-	var clearDiv = document.createElement("div");
-	var padding = 2 * parseFloat((window.getComputedStyle(targetDiv, null).getPropertyValue('padding')));
+	if (targetDiv.tagName == "B" || targetDiv.tagName == "I" ) {
 
-	console.log(targetDiv.offsetWidth - padding);
+		// If it enters here it will stop working
 
-	clearDiv.style.width = (targetDiv.offsetWidth - padding) + "px";
-	clearDiv.style.height = (targetDiv.offsetHeight - padding) + "px";
-	clearDiv.style.background = "red";
-	clearDiv.style.position = "absolute";
-	clearDiv.innerHTML = "BLOCK";
+		var targetClone = targetDiv.cloneNode(true);
 
+		var newSpan = document.createElement("span");
+		newSpan.appendChild(targetClone);
+		newSpan.style.display = "inline";
+		newSpan.style.background = "red";
 
-	targetDiv.insertBefore(clearDiv, targetDiv.firstChild);
+		targetDiv.parentNode.insertBefore(newSpan, targetDiv);
+		targetDiv.parentNode.removeChild(targetDiv);
+	}
+
+	else {
+		var clearDiv = document.createElement("div");
+		var padding = 2 * parseFloat((window.getComputedStyle(targetDiv, null).getPropertyValue('padding')));
+
+		clearDiv.style.width = (targetDiv.offsetWidth - padding) + "px";
+		clearDiv.style.height = (targetDiv.offsetHeight - padding) + "px";
+		clearDiv.style.background = "red";
+		clearDiv.style.position = "absolute";
+
+		targetDiv.insertBefore(clearDiv, targetDiv.firstChild);
+	}
+
 }
