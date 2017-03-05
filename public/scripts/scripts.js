@@ -2,7 +2,14 @@
 var allButtons = document.getElementsByTagName('button');
 
 for (var i = 0; i < allButtons.length; i++) {
-	allButtons[i].addEventListener("click", toggleTrigger, false);
+
+	if (allButtons[i].id == "done" || allButtons[i].id == "question") {
+		allButtons[i].addEventListener("click", null, false);
+	}
+
+	else {
+		allButtons[i].addEventListener("click", toggleTrigger, false);
+	}
 };
 
 
