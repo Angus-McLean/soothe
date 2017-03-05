@@ -20,7 +20,8 @@
 				"data/triggers.js",
 				"content/searchDOM.js",
 				"content/blur.js",
-				"content/content.js"
+				"content/content.js",
+				"bower_components/sentimood/sentimood.js"
 			],
 			"run_at": "document_start"
 		}
