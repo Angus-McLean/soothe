@@ -44,6 +44,7 @@ function addBlur(elem) {
 		elem.soothe.div = clearDiv;
 }
 
+
 function removeBlur(){
 	this.parentNode.removeChild(this);
 	this.soothe = null;
