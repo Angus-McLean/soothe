@@ -2,14 +2,22 @@
 function generateTriggerRegexes(triggersObject) {
   var triggers_regex = {};
   for(var i in triggersObject) {
-    var regexStr = '\\b(' + triggersObject[i].join('|') + ')\\b';
+    var regexStr = '(' + triggersObject[i].join('|') + ')';
     triggers_regex[i] = new RegExp(regexStr);
   }
-  return triggers_regex
+  return triggers_regex;
 }
 
 // {violence : _regex_, racist : _regex_}
 var triggers_regex = generateTriggerRegexes(TRIGGERS);
+
+chrome.storage.local.get(['activeFilterTypes'], function (arrayOfFilterTypes) {
+	for (var triggerType in triggers_regex) {
+		if (arrayOfFilterTypes.activeFilterTypes.indexOf(triggerType) === -1) {
+			delete triggers_regex[triggerType];
+		}
+	}
+});
 
 function checkContainsHarasment (text, triggers_regex) {
   for(var i in triggers_regex) {
@@ -84,4 +92,4 @@ function iterateOffensiveNodes(startElem, handler) {
    //debugger;
    handler(walker.currentNode);
  }
-} 
+}

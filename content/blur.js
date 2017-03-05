@@ -1,20 +1,51 @@
-window.onload = function() {
+function addBlur(elem) {
 
-	var targetDiv = document.getElementById("toc");
+	console.log(elem);
 
-	console.log([targetDiv.offsetWidth, targetDiv.offsetHeight]);
+	if(elem.soothe) {
+		return;
+	} else {
+		elem.soothe = {};
+	}
 
-	var clearDiv = document.createElement("div");
-	var padding = 2 * parseFloat((window.getComputedStyle(targetDiv, null).getPropertyValue('padding')));
+	var targetDiv = elem;
 
-	console.log(targetDiv.offsetWidth - padding);
+	if (targetDiv.tagName == "B" || targetDiv.tagName == "I" ) {
 
-	clearDiv.style.width = (targetDiv.offsetWidth - padding) + "px";
-	clearDiv.style.height = (targetDiv.offsetHeight - padding) + "px";
-	clearDiv.style.background = "red";
-	clearDiv.style.position = "absolute";
-	clearDiv.innerHTML = "BLOCK";
+		targetDiv = targetDiv.parentNode;
+
+	}
+
+		var clearDiv = document.createElement("div");
+		var padding = 2 * parseFloat((window.getComputedStyle(targetDiv, null).getPropertyValue('padding')));
+
+		clearDiv.style.width = (targetDiv.offsetWidth - padding) + "px";
+		clearDiv.style.height = (targetDiv.offsetHeight - padding) + "px";
+		clearDiv.style.background = "red";
+		clearDiv.style.position = "absolute";
+		clearDiv.style.zIndex = 10;
+		clearDiv.style.opacity = "0.5";
+
+		clearDiv.addEventListener("click", removeBlur, false);
+		clearDiv.soothe = {parent : elem};
+
+		// create span for bluring
+		var newSpan = document.createElement('span');
+		newSpan.style.filter = 'blur(2px)';
+
+		// Append "Lorem Ipsum" text to new span:
+		newSpan.appendChild( document.createTextNode(targetDiv.innerText) );
+		newSpan.soothe = {parent : elem};
 
 
-	targetDiv.insertBefore(clearDiv, targetDiv.firstChild);
+		// Replace old text node with new span:
+
+		targetDiv.insertBefore(clearDiv, targetDiv.firstChild);
+		elem.soothe.div = clearDiv;
+}
+
+
+function removeBlur(){
+	this.parentNode.removeChild(this);
+	this.soothe = null;
 }
