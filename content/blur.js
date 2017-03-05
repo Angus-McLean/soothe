@@ -2,6 +2,12 @@ function addBlur(elem) {
 
 	console.log(elem);
 
+	if(elem.soothe) {
+		return;
+	} else {
+		elem.soothe = {};
+	}
+
 	var targetDiv = elem;
 
 	if (targetDiv.tagName == "B" || targetDiv.tagName == "I" ) {
@@ -19,13 +25,27 @@ function addBlur(elem) {
 		clearDiv.style.position = "absolute";
 		clearDiv.style.zIndex = 10;
 		clearDiv.style.opacity = "0.5";
-		clearDiv.style.filter = "blur(20px);";
 
 		clearDiv.addEventListener("click", removeBlur, false);
+		clearDiv.soothe = {parent : elem};
+
+		// create span for bluring
+		var newSpan = document.createElement('span');
+		newSpan.style.filter = 'blur(2px)';
+
+		// Append "Lorem Ipsum" text to new span:
+		newSpan.appendChild( document.createTextNode(targetDiv.innerText) );
+		newSpan.soothe = {parent : elem};
+
+
+		// Replace old text node with new span:
 
 		targetDiv.insertBefore(clearDiv, targetDiv.firstChild);
+		elem.soothe.div = clearDiv;
+	}
 }
 
 function removeBlur(){
 	this.parentNode.removeChild(this);
+	this.soothe = null;
 }
