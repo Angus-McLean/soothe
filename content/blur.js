@@ -1,6 +1,6 @@
-function addBlur(elem) {
+var SOOTHE_ELEMS = [];
 
-	console.log(elem);
+function addBlur(elem) {
 
 	if(elem.soothe) {
 		return;
@@ -42,10 +42,15 @@ function addBlur(elem) {
 
 		targetDiv.insertBefore(clearDiv, targetDiv.firstChild);
 		elem.soothe.div = clearDiv;
+		SOOTHE_ELEMS.push(targetDiv);
 }
 
 
 function removeBlur(){
+	// Find index of offensive div
+	var pos = SOOTHE_ELEMS.indexOf(this.parentNode);
+	SOOTHE_ELEMS.splice(pos, 1);
+
 	this.parentNode.removeChild(this);
 	this.soothe = null;
 }
