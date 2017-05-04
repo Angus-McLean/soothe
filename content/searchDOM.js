@@ -5,7 +5,7 @@ var triggers_regex = {};
 function generateTriggerRegexes(cb) {
 	triggers_regex = {};
 	chrome.storage.local.get(['activeFilterTypes', 'TRIGGERS'], function (data) {
-		data.activeFilterTypes.forEach(function (triggerType) {
+		(data.activeFilterTypes||[]).forEach(function (triggerType) {
 			var regexStr = '(' + data.TRIGGERS[triggerType].join('|') + ')';
 			triggers_regex[triggerType] = new RegExp(regexStr);
 		});
